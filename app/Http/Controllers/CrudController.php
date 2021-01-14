@@ -38,9 +38,11 @@ class CrudController extends Controller
         //
     }
 
-    public function update(Request $request, Crud $crud)
+    public function update(Request $request, $crud)
     {
-        //
+        //return response()->json($request);
+        Crud::where('id', $crud)->update(['status'=> $request->get('status')]);
+        return response()->json($request);
     }
 
     public function destroy(Crud $crud)

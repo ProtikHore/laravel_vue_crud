@@ -13,7 +13,24 @@
                     <span class="text-danger pb-3" style="font-size: 20px;" v-if="form.errors.has('title')" v-text="form.errors.get('title')"></span>
                 </form>
                 <div class="w-100 todo">
-                    <div v-for="crud in cruds" :key="crud.id" class="w-100">{{ crud.title }}</div>
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th>SL</th>
+                            <th>List</th>
+                            <th>Action</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                            <tr v-for="crud in cruds" :key="crud.id">
+                                <td v-if="crud.status === 1"><input type="checkbox" v-on:click="selectList(crud.id, crud.status)" :value="crud.id" checked class="select_list"> {{  crud.id }}</td>
+                                <td v-if="crud.status === 0"><input type="checkbox" v-on:click="selectList(crud.id, crud.status)" :value="crud.id" class="select_list"> {{  crud.id }}</td>
+                                <td><span class="text-success" v-if="crud.status === 1" v-text="crud.title"></span><span class="text-danger" v-if="crud.status === 0" v-text="crud.title"></span></td>
+                                <td><i class="text-info" style="cursor: pointer; font-size: 1rem;" id="edit" title="Edit">Edit</i></td>
+                            </tr>
+                        </tbody>
+                    </table>
+<!--                    <div v-for="crud in cruds" :key="crud.id" class="w-100">{{ crud.title }}</div>-->
                 </div>
             </div>
             <div class="col-2"></div>
@@ -28,7 +45,7 @@ export default {
             cruds:'',
             form: new Form({
                 title: '',
-            })
+            }),
             //title: $('#title').val(),
         }
     },
@@ -48,6 +65,24 @@ export default {
             axios.post('/api/crud', data).then((res) =>{
                 console.log(res);
                 this.form.reset();
+                this.getCruds();
+            }).catch((error) =>{
+                this.form.errors.record(error.response.data.errors);
+                console.log(error)
+            });
+        },
+        selectList(id, status) {
+            console.log(status);
+            let data = new FormData();
+            data.append('_method', 'PATCH')
+            if(status === 1){
+                data.append('status', 0);
+            }
+            if(status === 0){
+                data.append('status', 1)
+            }
+            axios.post('/api/crud/'+id, data).then((res) =>{
+                console.log(res);
                 this.getCruds();
             }).catch((error) =>{
                 this.form.errors.record(error.response.data.errors);

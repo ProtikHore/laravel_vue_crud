@@ -1868,6 +1868,23 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
@@ -1902,6 +1919,31 @@ __webpack_require__.r(__webpack_exports__);
         _this2.getCruds();
       })["catch"](function (error) {
         _this2.form.errors.record(error.response.data.errors);
+
+        console.log(error);
+      });
+    },
+    selectList: function selectList(id, status) {
+      var _this3 = this;
+
+      console.log(status);
+      var data = new FormData();
+      data.append('_method', 'PATCH');
+
+      if (status === 1) {
+        data.append('status', 0);
+      }
+
+      if (status === 0) {
+        data.append('status', 1);
+      }
+
+      axios.post('/api/crud/' + id, data).then(function (res) {
+        console.log(res);
+
+        _this3.getCruds();
+      })["catch"](function (error) {
+        _this3.form.errors.record(error.response.data.errors);
 
         console.log(error);
       });
@@ -37699,16 +37741,68 @@ var render = function() {
           ]
         ),
         _vm._v(" "),
-        _c(
-          "div",
-          { staticClass: "w-100 todo" },
-          _vm._l(_vm.cruds, function(crud) {
-            return _c("div", { key: crud.id, staticClass: "w-100" }, [
-              _vm._v(_vm._s(crud.title))
-            ])
-          }),
-          0
-        )
+        _c("div", { staticClass: "w-100 todo" }, [
+          _c("table", { staticClass: "table" }, [
+            _vm._m(1),
+            _vm._v(" "),
+            _c(
+              "tbody",
+              _vm._l(_vm.cruds, function(crud) {
+                return _c("tr", { key: crud.id }, [
+                  crud.status === 1
+                    ? _c("td", [
+                        _c("input", {
+                          staticClass: "select_list",
+                          attrs: { type: "checkbox", checked: "" },
+                          domProps: { value: crud.id },
+                          on: {
+                            click: function($event) {
+                              return _vm.selectList(crud.id, crud.status)
+                            }
+                          }
+                        }),
+                        _vm._v(" " + _vm._s(crud.id))
+                      ])
+                    : _vm._e(),
+                  _vm._v(" "),
+                  crud.status === 0
+                    ? _c("td", [
+                        _c("input", {
+                          staticClass: "select_list",
+                          attrs: { type: "checkbox" },
+                          domProps: { value: crud.id },
+                          on: {
+                            click: function($event) {
+                              return _vm.selectList(crud.id, crud.status)
+                            }
+                          }
+                        }),
+                        _vm._v(" " + _vm._s(crud.id))
+                      ])
+                    : _vm._e(),
+                  _vm._v(" "),
+                  _c("td", [
+                    crud.status === 1
+                      ? _c("span", {
+                          staticClass: "text-success",
+                          domProps: { textContent: _vm._s(crud.title) }
+                        })
+                      : _vm._e(),
+                    crud.status === 0
+                      ? _c("span", {
+                          staticClass: "text-danger",
+                          domProps: { textContent: _vm._s(crud.title) }
+                        })
+                      : _vm._e()
+                  ]),
+                  _vm._v(" "),
+                  _vm._m(2, true)
+                ])
+              }),
+              0
+            )
+          ])
+        ])
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "col-2" })
@@ -37728,6 +37822,36 @@ var staticRenderFns = [
           attrs: { type: "submit", id: "add_button" }
         },
         [_vm._v("Add")]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", [
+      _c("tr", [
+        _c("th", [_vm._v("SL")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("List")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Action")])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("td", [
+      _c(
+        "i",
+        {
+          staticClass: "text-info",
+          staticStyle: { cursor: "pointer", "font-size": "1rem" },
+          attrs: { id: "edit", title: "Edit" }
+        },
+        [_vm._v("Edit")]
       )
     ])
   }
