@@ -9,7 +9,12 @@ require('./bootstrap');
 window.Vue = require('vue').default;
 
 import Form from './Form'
+import VueRouter from 'vue-router'
+import Crud from './components/CrudComponent';
+import Edit from './components/EditComponent';
+
 window.Form = Form;
+Vue.use(VueRouter);
 
 
 /**
@@ -32,6 +37,19 @@ Vue.component('crud-component', require('./components/CrudComponent.vue').defaul
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
+const router = new VueRouter({
+    mode: 'history',
+    routes: [
+        {
+            path: '/',
+            name: 'change',
+            component: Edit
+        },
+    ],
+});
+
 const app = new Vue({
     el: '#app',
+    components: { Crud },
+    router,
 });

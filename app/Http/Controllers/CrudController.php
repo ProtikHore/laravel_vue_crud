@@ -49,4 +49,9 @@ class CrudController extends Controller
     {
         //
     }
+
+    public function change()
+    {
+        return response()->json('change');
+    }
 }
