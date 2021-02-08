@@ -26,8 +26,8 @@
                                 <td v-if="crud.status === 1"><input type="checkbox" v-on:click="selectList(crud.id, crud.status)" :value="crud.id" checked class="select_list"> {{  crud.id }}</td>
                                 <td v-if="crud.status === 0"><input type="checkbox" v-on:click="selectList(crud.id, crud.status)" :value="crud.id" class="select_list"> {{  crud.id }}</td>
                                 <td><span class="text-success" v-if="crud.status === 1" v-text="crud.title"></span><span class="text-danger" v-if="crud.status === 0" v-text="crud.title"></span></td>
-<!--                                <td><i class="text-info" style="cursor: pointer; font-size: 1rem;" id="edit" title="Edit" v-on:click="dataChange(crud.id)"><router-link to="/change">Change</router-link></i></td>-->
-                                <td><router-link to="/change">Home</router-link></td>
+                                <td><i class="text-info" style="cursor: pointer; font-size: 1rem;" id="edit" title="Edit" v-on:click="dataChange(crud.id)"><router-link :to="{ name: 'change', params: {id: crud.id } }">Edit</router-link></i></td>
+<!--                                <td><router-link :to="{ name: 'change', params: {id: crud.id } }">Edit</router-link></td>-->
                             </tr>
                         </tbody>
                     </table>
@@ -91,11 +91,11 @@ export default {
             });
         },
         dataChange(id){
-            // axios.get('/api/change/'+id).then((res) =>{
-            //     console.log(res);
-            // }).catch((error) =>{
-            //     console.log(error)
-            // })
+            axios.get('/api/change/'+id).then((res) =>{
+                console.log(res);
+            }).catch((error) =>{
+                console.log(error)
+            })
             console.log(id + 'as');
         },
     },

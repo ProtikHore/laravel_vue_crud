@@ -10,6 +10,7 @@ window.Vue = require('vue').default;
 
 import Form from './Form'
 import VueRouter from 'vue-router'
+import App from './components/AppComponent';
 import Crud from './components/CrudComponent';
 import Edit from './components/EditComponent';
 
@@ -29,7 +30,8 @@ Vue.use(VueRouter);
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
 // Vue.component('example-component', require('./components/ExampleComponent.vue').default);
-Vue.component('crud-component', require('./components/CrudComponent.vue').default);
+// Vue.component('crud-component', require('./components/CrudComponent.vue').default);
+Vue.component('app-component', require('./components/AppComponent.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -41,7 +43,12 @@ const router = new VueRouter({
     mode: 'history',
     routes: [
         {
-            path: '/',
+            path: '/add',
+            name: 'add',
+            component: Crud
+        },
+        {
+            path: '/change/:id',
             name: 'change',
             component: Edit
         },
@@ -50,6 +57,6 @@ const router = new VueRouter({
 
 const app = new Vue({
     el: '#app',
-    components: { Crud },
+    components: { App, Crud, Edit },
     router,
 });

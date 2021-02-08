@@ -4,11 +4,10 @@
     <list default="true" id="74d672ba-b0a3-4174-b5aa-aa242da0b432" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/CrudController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/CrudController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/app.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/components/CrudComponent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/CrudComponent.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/EditComponent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/EditComponent.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/crud.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/crud.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
     </list>
@@ -167,11 +166,19 @@
       <updated>1610518491321</updated>
       <workItem from="1610518492685" duration="15422000" />
       <workItem from="1610594248756" duration="17891000" />
-      <workItem from="1610769294685" duration="18082000" />
+      <workItem from="1610769294685" duration="18761000" />
+      <workItem from="1610854326858" duration="587000" />
+      <workItem from="1612760151178" duration="14001000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="463" y="124" key="FileChooserDialogImpl" timestamp="1610854920045">
+      <screen x="0" y="0" width="1366" height="738" />
+    </state>
+    <state x="463" y="124" key="FileChooserDialogImpl/0.0.1366.738/1366.0.1280.994@0.0.1366.738" timestamp="1610854920045" />
   </component>
 </project>

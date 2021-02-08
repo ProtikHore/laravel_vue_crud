@@ -50,8 +50,8 @@ class CrudController extends Controller
         //
     }
 
-    public function change()
+    public function change($id)
     {
-        return response()->json('change');
+        return response()->json($id);
     }
 }
