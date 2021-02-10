@@ -1,62 +1,57 @@
-/**
- * First we will load all of this project's JavaScript dependencies which
- * includes Vue and other libraries. It is a great starting point when
- * building robust, powerful web applications using Vue and Laravel.
- */
+// require('./bootstrap');
+//
+// window.Vue = require('vue').default;
+// import Form from './Form'
+// import VueRouter from 'vue-router'
+// import App from './components/crud/AppComponent';
+// import Crud from './components/crud/CrudComponent';
+// import Edit from './components/crud/EditComponent';
+//
+// window.Form = Form;
+// Vue.use(VueRouter);
+//
+// // Vue.component('example-component', require('./components/ExampleComponent.vue').default);
+// // Vue.component('crud-component', require('./components/CrudComponent.vue').default);
+// Vue.component('app-component', require('./components/crud/AppComponent.vue').default);
+//
+//
+// const router = new VueRouter({
+//     mode: 'history',
+//     routes: [
+//         {
+//             path: '/add',
+//             name: 'add',
+//             component: Crud
+//         },
+//         {
+//             path: '/change/:id',
+//             name: 'change',
+//             component: Edit
+//         },
+//     ],
+// });
+//
+// const app = new Vue({
+//     el: '#app',
+//     components: { App, Crud, Edit },
+//     router,
+// });
+
+
+//---------------------------------------------------------------------------------------------------
+
+import Vue from 'vue';
+import routes from './components/router/index';
+import { HasError, AlertError } from 'vform';
+
+Vue.component(HasError.name, HasError);
+Vue.component(AlertError.name, AlertError);
 
 require('./bootstrap');
 
-window.Vue = require('vue').default;
-
-import Form from './Form'
-import VueRouter from 'vue-router'
-import App from './components/AppComponent';
-import Crud from './components/CrudComponent';
-import Edit from './components/EditComponent';
-
-window.Form = Form;
-Vue.use(VueRouter);
-
-
-/**
- * The following block of code may be used to automatically register your
- * Vue components. It will recursively scan this directory for the Vue
- * components and automatically register them with their "basename".
- *
- * Eg. ./components/ExampleComponent.vue -> <example-component></example-component>
- */
-
-// const files = require.context('./', true, /\.vue$/i)
-// files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
-
-// Vue.component('example-component', require('./components/ExampleComponent.vue').default);
-// Vue.component('crud-component', require('./components/CrudComponent.vue').default);
-Vue.component('app-component', require('./components/AppComponent.vue').default);
-
-/**
- * Next, we will create a fresh Vue application instance and attach it to
- * the page. Then, you may begin adding components to this application
- * or customize the JavaScript scaffolding to fit your unique needs.
- */
-
-const router = new VueRouter({
-    mode: 'history',
-    routes: [
-        {
-            path: '/add',
-            name: 'add',
-            component: Crud
-        },
-        {
-            path: '/change/:id',
-            name: 'change',
-            component: Edit
-        },
-    ],
-});
+Vue.component('navbar-component', require('./components/crud2/NavbarComponent.vue').default);
 
 const app = new Vue({
     el: '#app',
-    components: { App, Crud, Edit },
-    router,
+    router: routes,
 });
