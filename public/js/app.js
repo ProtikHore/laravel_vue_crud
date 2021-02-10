@@ -1893,20 +1893,23 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
+      cruds: [],
       form: new vform__WEBPACK_IMPORTED_MODULE_0__.Form({
         title: ''
       })
     };
   },
   methods: {
-    // getCruds(){
-    //     axios.get('/api/crud').then((res) =>{
-    //         this.cruds = res.data
-    //         console.log(res);
-    //     }).catch((error) =>{
-    //         console.log(error)
-    //     })
-    // },
+    getCruds: function getCruds() {
+      var _this = this;
+
+      axios.get('/api/crud').then(function (res) {
+        _this.cruds = res.data;
+        console.log(res);
+      })["catch"](function (error) {
+        console.log(error);
+      });
+    },
     saveData: function saveData() {
       // let data = new FormData();
       // data.append('title', this.title);
@@ -1922,7 +1925,7 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     selectList: function selectList(id, status) {
-      var _this = this;
+      var _this2 = this;
 
       console.log(status);
       var data = new FormData();
@@ -1939,9 +1942,9 @@ __webpack_require__.r(__webpack_exports__);
       axios.post('/api/crud/' + id, data).then(function (res) {
         console.log(res);
 
-        _this.getCruds();
+        _this2.getCruds();
       })["catch"](function (error) {
-        _this.form.errors.record(error.response.data.errors);
+        _this2.form.errors.record(error.response.data.errors);
 
         console.log(error);
       });
@@ -1956,7 +1959,7 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   mounted: function mounted() {
-    //this.getCruds();
+    this.getCruds();
     console.log('Component mounted.');
   }
 });
@@ -38815,18 +38818,109 @@ var render = function() {
                     }
                   }),
                   _vm._v(" "),
-                  _c("has-error", {
-                    attrs: { form: _vm.form, field: "title" }
-                  }),
+                  _vm._m(0),
                   _vm._v(" "),
-                  _vm._m(0)
+                  _c("has-error", {
+                    staticStyle: { "font-size": "15px" },
+                    attrs: { form: _vm.form, field: "title" }
+                  })
                 ],
                 1
               )
             ]
           ),
           _vm._v(" "),
-          _vm._m(1),
+          _c("div", { staticClass: "w-100 todo" }, [
+            _c("table", { staticClass: "table" }, [
+              _vm._m(1),
+              _vm._v(" "),
+              _c(
+                "tbody",
+                _vm._l(_vm.cruds, function(crud) {
+                  return _c("tr", { key: crud.id }, [
+                    crud.status === 1
+                      ? _c("td", [
+                          _c("input", {
+                            staticClass: "select_list",
+                            attrs: { type: "checkbox", checked: "" },
+                            domProps: { value: crud.id },
+                            on: {
+                              click: function($event) {
+                                return _vm.selectList(crud.id, crud.status)
+                              }
+                            }
+                          }),
+                          _vm._v(" " + _vm._s(crud.id))
+                        ])
+                      : _vm._e(),
+                    _vm._v(" "),
+                    crud.status === 0
+                      ? _c("td", [
+                          _c("input", {
+                            staticClass: "select_list",
+                            attrs: { type: "checkbox" },
+                            domProps: { value: crud.id },
+                            on: {
+                              click: function($event) {
+                                return _vm.selectList(crud.id, crud.status)
+                              }
+                            }
+                          }),
+                          _vm._v(" " + _vm._s(crud.id))
+                        ])
+                      : _vm._e(),
+                    _vm._v(" "),
+                    _c("td", [
+                      crud.status === 1
+                        ? _c("span", {
+                            staticClass: "text-success",
+                            domProps: { textContent: _vm._s(crud.title) }
+                          })
+                        : _vm._e(),
+                      crud.status === 0
+                        ? _c("span", {
+                            staticClass: "text-danger",
+                            domProps: { textContent: _vm._s(crud.title) }
+                          })
+                        : _vm._e()
+                    ]),
+                    _vm._v(" "),
+                    _c("td", [
+                      _c(
+                        "i",
+                        {
+                          staticClass: "text-info",
+                          staticStyle: {
+                            cursor: "pointer",
+                            "font-size": "1rem"
+                          },
+                          attrs: { id: "edit", title: "Edit" },
+                          on: {
+                            click: function($event) {
+                              return _vm.dataChange(crud.id)
+                            }
+                          }
+                        },
+                        [
+                          _c(
+                            "router-link",
+                            {
+                              attrs: {
+                                to: { name: "change", params: { id: crud.id } }
+                              }
+                            },
+                            [_vm._v("Edit")]
+                          )
+                        ],
+                        1
+                      )
+                    ])
+                  ])
+                }),
+                0
+              )
+            ])
+          ]),
           _vm._v(" "),
           _c("router-view")
         ],
@@ -38857,17 +38951,13 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "w-100 todo" }, [
-      _c("table", { staticClass: "table" }, [
-        _c("thead", [
-          _c("tr", [
-            _c("th", [_vm._v("SL")]),
-            _vm._v(" "),
-            _c("th", [_vm._v("List")]),
-            _vm._v(" "),
-            _c("th", [_vm._v("Action")])
-          ])
-        ])
+    return _c("thead", [
+      _c("tr", [
+        _c("th", [_vm._v("SL")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("List")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Action")])
       ])
     ])
   }
@@ -38977,7 +39067,7 @@ var render = function() {
                         attrs: { to: { name: "crud" } }
                       },
                       [
-                        _vm._v("Home "),
+                        _vm._v("Crud "),
                         _c("span", { staticClass: "sr-only" }, [
                           _vm._v("(current)")
                         ])
