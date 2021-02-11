@@ -13,7 +13,7 @@
                     </div>
 <!--                    <span class="text-danger pb-3" style="font-size: 20px;" v-if="form.errors.has('title')" v-text="form.errors.get('title')"></span>-->
                 </form>
-                <div class="w-100 todo">
+                <div class="w-100 todo" v-if="cruds.length > 0">
                     <table class="table">
                         <thead>
                         <tr>
@@ -27,13 +27,14 @@
                                 <td v-if="crud.status === 1"><input type="checkbox" v-on:click="selectList(crud.id, crud.status)" :value="crud.id" checked class="select_list"> {{  crud.id }}</td>
                                 <td v-if="crud.status === 0"><input type="checkbox" v-on:click="selectList(crud.id, crud.status)" :value="crud.id" class="select_list"> {{  crud.id }}</td>
                                 <td><span class="text-success" v-if="crud.status === 1" v-text="crud.title"></span><span class="text-danger" v-if="crud.status === 0" v-text="crud.title"></span></td>
-                                <td><i class="text-info" style="cursor: pointer; font-size: 1rem;" id="edit" title="Edit" v-on:click="dataChange(crud.id)"><router-link :to="{ name: 'change', params: {id: crud.id } }">Edit</router-link></i></td>
-<!--                                <td><router-link :to="{ name: 'change', params: {id: crud.id } }">Edit</router-link></td>-->
+                                <td><router-link :to="{ name: 'edit', params: {id: crud.id } }">Edit</router-link></td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
-                <router-view></router-view>
+                <div class="no_data text-center" v-else>
+                    <h2>No Record</h2>
+                </div>
             </div>
             <div class="col-2"></div>
         </div>
@@ -71,34 +72,28 @@ export default {
             //     console.log(error)
             // });
             this.form.post('/api/crud').then(({ data }) => {
-                console.log(data)
+                console.log(data);
+                this.form.reset();
+                this.getCruds();
             });
         },
         selectList(id, status) {
             console.log(status);
             let data = new FormData();
-            data.append('_method', 'PATCH')
+            //data.append('_method', 'PATCH')
             if(status === 1){
                 data.append('status', 0);
             }
             if(status === 0){
                 data.append('status', 1)
             }
-            axios.post('/api/crud/'+id, data).then((res) =>{
+            axios.post('/api/change/'+id, data).then((res) =>{
                 console.log(res);
                 this.getCruds();
             }).catch((error) =>{
                 this.form.errors.record(error.response.data.errors);
                 console.log(error)
             });
-        },
-        dataChange(id){
-            axios.get('/api/change/'+id).then((res) =>{
-                console.log(res);
-            }).catch((error) =>{
-                console.log(error)
-            })
-            console.log(id + 'as');
         },
     },
 

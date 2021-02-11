@@ -33,16 +33,19 @@ class CrudController extends Controller
         //
     }
 
-    public function edit(Crud $crud)
+    public function edit($crud)
     {
-        //
+        return response()->json(Crud::where('id', $crud)->first());
     }
 
-    public function update(Request $request, $crud)
+    public function update(Request $request, Crud $crud)
     {
-        //return response()->json($request);
-        Crud::where('id', $crud)->update(['status'=> $request->get('status')]);
-        return response()->json($request);
+        $this->validate($request,
+            [
+                'title' => 'required|unique:cruds,title,' . $crud->id
+            ]);
+        $crud->update(['title'=> $request->get('title')]);
+        return response()->json('update');
     }
 
     public function destroy(Crud $crud)
@@ -50,8 +53,9 @@ class CrudController extends Controller
         //
     }
 
-    public function change($id)
+    public function change(Request $request, $id)
     {
-        return response()->json($id);
+        Crud::where('id', $id)->update(['status'=> $request->get('status')]);
+        return response()->json($request);
     }
 }
