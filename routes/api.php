@@ -21,3 +21,5 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::resource('crud', CrudController::class);
 Route::post('change/{id}', [CrudController::class, 'change']);
+Route::get('completed', [CrudController::class, 'completed']);
+Route::get('active', [CrudController::class, 'active']);

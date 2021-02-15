@@ -22,6 +22,7 @@
 <script>
 
 import { Form } from 'vform';
+import routes from '../router/index';
 export default {
     data() {
         return {
@@ -46,6 +47,13 @@ export default {
             let id = this.$route.params.id;
             this.form.put(`/api/crud/${id}`).then(({ data }) => {
                 console.log(data);
+                let status = this.$route;
+                console.log(status);
+                routes.push({ name: 'all' });
+                //let value = 2;
+                //routes.push({ name: 'edit', params: { id: value } });
+                //routes.go(-1);
+                //routes.back();
             });
         },
     },

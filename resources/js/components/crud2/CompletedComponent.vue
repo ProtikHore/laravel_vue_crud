@@ -11,7 +11,7 @@
                         </div>
                         <has-error :form="form" field="title" style="font-size: 15px;"></has-error>
                     </div>
-<!--                    <span class="text-danger pb-3" style="font-size: 20px;" v-if="form.errors.has('title')" v-text="form.errors.get('title')"></span>-->
+                    <!--                    <span class="text-danger pb-3" style="font-size: 20px;" v-if="form.errors.has('title')" v-text="form.errors.get('title')"></span>-->
                 </form>
                 <div class="w-100 todo" v-if="cruds.length > 0">
                     <table class="table">
@@ -23,17 +23,17 @@
                         </tr>
                         </thead>
                         <tbody>
-                            <tr v-for="crud in cruds" :key="crud.id">
-                                <td v-if="crud.status === 1"><input type="checkbox" v-on:click="selectList(crud.id, crud.status)" :value="crud.id" checked class="select_list"> {{  crud.id }}</td>
-                                <td v-if="crud.status === 0"><input type="checkbox" v-on:click="selectList(crud.id, crud.status)" :value="crud.id" class="select_list"> {{  crud.id }}</td>
-                                <td><span class="text-success" v-if="crud.status === 1" v-text="crud.title"></span><span class="text-danger" v-if="crud.status === 0" v-text="crud.title"></span></td>
-                                <td><router-link :to="{ name: 'edit', params: {id: crud.id } }">Edit</router-link></td>
-                            </tr>
-                            <tr>
-                                <td><router-link :to="{name: 'all'}" class="btn-primary btn btn-sm"> All </router-link></td>
-                                <td><router-link :to="{name: 'active'}" class="btn-primary btn btn-sm">Active</router-link></td>
-                                <td><router-link :to="{name: 'completed'}" class="btn-primary btn btn-sm">Completed</router-link></td>
-                            </tr>
+                        <tr v-for="crud in cruds" :key="crud.id">
+                            <td v-if="crud.status === 1"><input type="checkbox" v-on:click="selectList(crud.id, crud.status)" :value="crud.id" checked class="select_list"> {{  crud.id }}</td>
+                            <td v-if="crud.status === 0"><input type="checkbox" v-on:click="selectList(crud.id, crud.status)" :value="crud.id" class="select_list"> {{  crud.id }}</td>
+                            <td><span class="text-success" v-if="crud.status === 1" v-text="crud.title"></span><span class="text-danger" v-if="crud.status === 0" v-text="crud.title"></span></td>
+                            <td><router-link :to="{ name: 'edit', params: {id: crud.id } }">Edit</router-link></td>
+                        </tr>
+                        <tr>
+                            <td><router-link :to="{name: 'all'}" class="btn-primary btn btn-sm"> All </router-link></td>
+                            <td><router-link :to="{name: 'active'}" class="btn-primary btn btn-sm">Active</router-link></td>
+                            <td><router-link :to="{name: 'completed', params: {status: 1 }}" class="btn-primary btn btn-sm">Completed</router-link></td>
+                        </tr>
                         </tbody>
                     </table>
                 </div>
@@ -60,7 +60,7 @@ export default {
 
     methods: {
         getCruds(){
-            axios.get('/api/crud').then((res) =>{
+            axios.get(`/api/completed`).then((res) =>{
                 this.cruds = res.data
                 console.log(res);
             }).catch((error) =>{

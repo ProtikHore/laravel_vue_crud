@@ -58,4 +58,14 @@ class CrudController extends Controller
         Crud::where('id', $id)->update(['status'=> $request->get('status')]);
         return response()->json($request);
     }
+
+    public function completed(Request $request)
+    {
+        return response()->json(Crud::where('status', 1)->get());
+    }
+
+    public function active(Request $request)
+    {
+        return response()->json(Crud::where('status', 0)->get());
+    }
 }
