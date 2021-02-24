@@ -2187,6 +2187,9 @@ __webpack_require__.r(__webpack_exports__);
 
       axios.get('/api/crud').then(function (res) {
         _this.cruds = res.data;
+
+        _this.allData();
+
         console.log(res);
       })["catch"](function (error) {
         console.log(error);

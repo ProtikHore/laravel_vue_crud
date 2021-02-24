@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="74d672ba-b0a3-4174-b5aa-aa242da0b432" name="Default Changelist" comment="" />
+    <list default="true" id="74d672ba-b0a3-4174-b5aa-aa242da0b432" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/laravel_vue_crud.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/laravel_vue_crud.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/phpunit.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/phpunit.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/crud2/CrudComponent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/crud2/CrudComponent.vue" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -133,6 +139,7 @@
     </include_path>
   </component>
   <component name="ProjectId" id="1n0EDq8GTzAKHVqVrw6nGlxvHNx" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -179,11 +186,24 @@
       <workItem from="1613370338662" duration="13571000" />
       <workItem from="1613445107350" duration="176000" />
       <workItem from="1614057224797" duration="4537000" />
+      <workItem from="1614178705719" duration="984000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
     <state x="504" y="129" key="FileChooserDialogImpl" timestamp="1612777327645">

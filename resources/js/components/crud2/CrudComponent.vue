@@ -68,6 +68,7 @@ export default {
         getCruds(){
             axios.get('/api/crud').then((res) =>{
                 this.cruds = res.data;
+                this.allData();
                 console.log(res);
             }).catch((error) =>{
                 console.log(error);
