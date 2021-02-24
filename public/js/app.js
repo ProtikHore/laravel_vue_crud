@@ -2165,11 +2165,17 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
       cruds: [],
+      filterData: [],
       form: new vform__WEBPACK_IMPORTED_MODULE_0__.Form({
         title: ''
       })
@@ -2228,6 +2234,48 @@ __webpack_require__.r(__webpack_exports__);
         _this3.form.errors.record(error.response.data.errors);
 
         console.log(error);
+      });
+    },
+    activeData: function activeData() {
+      var _this4 = this;
+
+      //console.log('active');
+      //console.log(this.cruds);
+      this.filterData.splice(0);
+      this.cruds.forEach(function (i) {
+        if (i.status === 0) {
+          _this4.filterData.push(i);
+
+          console.log(_this4.filterData);
+        } //console.log(i.status);
+
+      });
+    },
+    completedData: function completedData() {
+      var _this5 = this;
+
+      //console.log('active');
+      //console.log(this.cruds);
+      this.filterData.splice(0);
+      this.cruds.forEach(function (i) {
+        if (i.status === 1) {
+          _this5.filterData.push(i);
+
+          console.log(_this5.filterData);
+        } //console.log(i.status);
+
+      });
+    },
+    allData: function allData() {
+      var _this6 = this;
+
+      //console.log('active');
+      //console.log(this.cruds);
+      this.filterData.splice(0);
+      this.cruds.forEach(function (i) {
+        _this6.filterData.push(i);
+
+        console.log(_this6.filterData); //console.log(i.status);
       });
     }
   },
@@ -39928,7 +39976,7 @@ var render = function() {
                 _c(
                   "tbody",
                   [
-                    _vm._l(_vm.cruds, function(crud) {
+                    _vm._l(_vm.filterData, function(crud) {
                       return _c("tr", { key: crud.id }, [
                         crud.status === 1
                           ? _c("td", [
@@ -39996,50 +40044,41 @@ var render = function() {
                     }),
                     _vm._v(" "),
                     _c("tr", [
-                      _c(
-                        "td",
-                        [
-                          _c(
-                            "router-link",
-                            {
-                              staticClass: "btn-primary btn btn-sm",
-                              attrs: { to: { name: "all" } }
-                            },
-                            [_vm._v(" All ")]
-                          )
-                        ],
-                        1
-                      ),
+                      _c("td", [
+                        _c(
+                          "a",
+                          {
+                            staticClass: "btn-primary btn btn-sm",
+                            attrs: { href: "#all" },
+                            on: { click: _vm.allData }
+                          },
+                          [_vm._v(" All ")]
+                        )
+                      ]),
                       _vm._v(" "),
-                      _c(
-                        "td",
-                        [
-                          _c(
-                            "router-link",
-                            {
-                              staticClass: "btn-primary btn btn-sm",
-                              attrs: { to: { name: "active" } }
-                            },
-                            [_vm._v("Active")]
-                          )
-                        ],
-                        1
-                      ),
+                      _c("td", [
+                        _c(
+                          "a",
+                          {
+                            staticClass: "btn-primary btn btn-sm",
+                            attrs: { href: "#active" },
+                            on: { click: _vm.activeData }
+                          },
+                          [_vm._v("Active")]
+                        )
+                      ]),
                       _vm._v(" "),
-                      _c(
-                        "td",
-                        [
-                          _c(
-                            "router-link",
-                            {
-                              staticClass: "btn-primary btn btn-sm",
-                              attrs: { to: { name: "completed" } }
-                            },
-                            [_vm._v("Completed")]
-                          )
-                        ],
-                        1
-                      )
+                      _c("td", [
+                        _c(
+                          "a",
+                          {
+                            staticClass: "btn-primary btn btn-sm",
+                            attrs: { href: "#completed" },
+                            on: { click: _vm.completedData }
+                          },
+                          [_vm._v("Completed")]
+                        )
+                      ])
                     ])
                   ],
                   2

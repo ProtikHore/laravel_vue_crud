@@ -23,16 +23,21 @@
                         </tr>
                         </thead>
                         <tbody>
-                            <tr v-for="crud in cruds" :key="crud.id">
+                            <tr v-for="crud in filterData" :key="crud.id">
                                 <td v-if="crud.status === 1"><input type="checkbox" v-on:click="selectList(crud.id, crud.status)" :value="crud.id" checked class="select_list"> {{  crud.id }}</td>
                                 <td v-if="crud.status === 0"><input type="checkbox" v-on:click="selectList(crud.id, crud.status)" :value="crud.id" class="select_list"> {{  crud.id }}</td>
                                 <td><span class="text-success" v-if="crud.status === 1" v-text="crud.title"></span><span class="text-danger" v-if="crud.status === 0" v-text="crud.title"></span></td>
                                 <td><router-link :to="{ name: 'edit', params: {id: crud.id } }">Edit</router-link></td>
                             </tr>
-                            <tr>
+                            <!-- <tr>
                                 <td><router-link :to="{name: 'all'}" class="btn-primary btn btn-sm"> All </router-link></td>
                                 <td><router-link :to="{name: 'active'}" class="btn-primary btn btn-sm">Active</router-link></td>
                                 <td><router-link :to="{name: 'completed'}" class="btn-primary btn btn-sm">Completed</router-link></td>
+                            </tr> -->
+                            <tr>
+                                <td><a href="#all" v-on:click="allData" class="btn-primary btn btn-sm"> All </a></td>
+                                <td><a href="#active" v-on:click="activeData" class="btn-primary btn btn-sm">Active</a></td>
+                                <td><a href="#completed" v-on:click="completedData" class="btn-primary btn btn-sm">Completed</a></td>
                             </tr>
                         </tbody>
                     </table>
@@ -52,6 +57,7 @@ export default {
     data() {
         return {
             cruds: [],
+            filterData: [],
             form: new Form({
                 title: '',
             }),
@@ -61,10 +67,10 @@ export default {
     methods: {
         getCruds(){
             axios.get('/api/crud').then((res) =>{
-                this.cruds = res.data
+                this.cruds = res.data;
                 console.log(res);
             }).catch((error) =>{
-                console.log(error)
+                console.log(error);
             })
         },
         saveData() {
@@ -100,6 +106,40 @@ export default {
                 console.log(error)
             });
         },
+        activeData(){
+            //console.log('active');
+            //console.log(this.cruds);
+            this.filterData.splice(0);
+            this.cruds.forEach(i=>{
+                if(i.status === 0) {
+                    this.filterData.push(i);
+                    console.log(this.filterData);
+                }
+                //console.log(i.status);
+            })
+        },
+        completedData(){
+            //console.log('active');
+            //console.log(this.cruds);
+            this.filterData.splice(0);
+            this.cruds.forEach(i=>{
+                if(i.status === 1) {
+                    this.filterData.push(i);
+                    console.log(this.filterData);
+                }
+                //console.log(i.status);
+            })
+        },
+        allData(){
+            //console.log('active');
+            //console.log(this.cruds);
+            this.filterData.splice(0);
+            this.cruds.forEach(i=>{
+                this.filterData.push(i);
+                console.log(this.filterData);
+                //console.log(i.status);
+            })
+        }
     },
 
     mounted() {
