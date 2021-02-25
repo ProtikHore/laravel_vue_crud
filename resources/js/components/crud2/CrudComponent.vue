@@ -26,7 +26,9 @@
                             <tr v-for="crud in filterData" :key="crud.id">
                                 <td v-if="crud.status === 1"><input type="checkbox" v-on:click="selectList(crud.id, crud.status)" :value="crud.id" checked class="select_list"> {{  crud.id }}</td>
                                 <td v-if="crud.status === 0"><input type="checkbox" v-on:click="selectList(crud.id, crud.status)" :value="crud.id" class="select_list"> {{  crud.id }}</td>
-                                <td><span class="text-success" v-if="crud.status === 1" v-text="crud.title"></span><span class="text-danger" v-if="crud.status === 0" v-text="crud.title"></span></td>
+                                <!-- <td><span class="text-success" v-if="crud.status === 1" v-text="crud.title"></span><span class="text-danger" v-if="crud.status === 0" v-text="crud.title"></span></td> -->
+                                <!-- <td><span class="text-success" v-if="crud.status === 1" v-text="crud.title"></span><span class="text-danger" v-if="crud.status === 0" v-text="crud.title"></span></td> -->
+                                <td><input class="edit" type="text" style="border: none" v-model="crud.title" readonly /></td>
                                 <td><router-link :to="{ name: 'edit', params: {id: crud.id } }">Edit</router-link></td>
                             </tr>
                             <!-- <tr>

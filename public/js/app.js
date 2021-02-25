@@ -2170,6 +2170,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
@@ -40014,18 +40016,28 @@ var render = function() {
                           : _vm._e(),
                         _vm._v(" "),
                         _c("td", [
-                          crud.status === 1
-                            ? _c("span", {
-                                staticClass: "text-success",
-                                domProps: { textContent: _vm._s(crud.title) }
-                              })
-                            : _vm._e(),
-                          crud.status === 0
-                            ? _c("span", {
-                                staticClass: "text-danger",
-                                domProps: { textContent: _vm._s(crud.title) }
-                              })
-                            : _vm._e()
+                          _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: crud.title,
+                                expression: "crud.title"
+                              }
+                            ],
+                            staticClass: "edit",
+                            staticStyle: { border: "none" },
+                            attrs: { type: "text", readonly: "" },
+                            domProps: { value: crud.title },
+                            on: {
+                              input: function($event) {
+                                if ($event.target.composing) {
+                                  return
+                                }
+                                _vm.$set(crud, "title", $event.target.value)
+                              }
+                            }
+                          })
                         ]),
                         _vm._v(" "),
                         _c(
